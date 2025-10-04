@@ -19,10 +19,10 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Deliver') { 
-            steps {
-                sh 'npm publish'
-            }
-        }
+        // stage('Deliver') { 
+        //     steps {
+        //         sh 'npm publish'
+        //     }
+        // }
     }
 }
