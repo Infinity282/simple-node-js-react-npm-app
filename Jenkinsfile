@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Deliver') { 
             steps {
-                sh 'npm run publish'
+                sh 'npm publish'
             }
         }
     }
