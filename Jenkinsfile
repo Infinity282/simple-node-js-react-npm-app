@@ -4,9 +4,8 @@ pipeline {
         nodejs 'node-24.9.0'
     }
     stages {
-        stage('Build') {
+        stage('Prepare') {
             steps {
-                sh 'node -v'
                 sh 'npm install'
             }
         }
@@ -15,11 +14,14 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'npm build'
+            }
+        }
         stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
+                sh 'npm publish'
             }
         }
     }
